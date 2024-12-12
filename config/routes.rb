@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-DiscourseRewind::Engine.routes.draw do
-  get "/rewinds" => "rewinds#show"
-  get "/rewinds/assets/:version/:name" => "rewinds_assets#show"
-end
+DiscourseRewind::Engine.routes.draw { get "/rewinds" => "rewinds#show" }
 
 Discourse::Application.routes.draw { mount ::DiscourseRewind::Engine, at: "/" }

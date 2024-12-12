@@ -5,11 +5,7 @@ module DiscourseRewind
   #
   # @example
   #  ::DiscourseRewind::Rewind::Fetch.call(
-  #    guardian: guardian,
-  #    params: {
-  #      username: "falco",
-  #      year: 2024,
-  #    }
+  #    guardian: guardian
   #  )
   #
   class Rewind::Fetch
@@ -30,34 +26,26 @@ module DiscourseRewind
 
     CACHE_DURATION = 5.minutes
 
-    params do
-      attribute :year, :integer
-      attribute :username, :string
-
-      validates :year, presence: true
-      validates :username, presence: true
-    end
-
     model :user
     model :date
     model :reports
 
     private
 
-    def fetch_user(params:)
-      User.find_by_username(params.username)
+    def fetch_user(guardian:)
+      User.find_by_username(guardian.user.username)
     end
 
     def fetch_date(params:)
-      Date.new(params.year).all_year
+      Date.new(2024).all_year
     end
 
-    def fetch_reports(params:, date:, user:, guardian:)
-      key = "rewind:#{params.username}:#{params.year}"
+    def fetch_reports(date:, user:, guardian:)
+      key = "rewind:#{guardian.user.username}:#{2024}"
       reports = Discourse.redis.get(key)
 
       if Rails.env.development? || !reports
-        reports = REPORTS.map { |report| report.call(params:, date:, user:, guardian:) }
+        reports = REPORTS.map { |report| report.call(date:, user:, guardian:) }
         Discourse.redis.setex(key, CACHE_DURATION, MultiJson.dump(reports))
       else
         reports = MultiJson.load(reports, symbolize_keys: true)
