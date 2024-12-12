@@ -22,11 +22,8 @@ module DiscourseRewind
     #   @option params [Integer] :username of the rewind
     #   @return [Service::Base::Context]
 
-    # order matters, rewinds are displayed in the order they are defined
-    REPORTS = [
-      DiscourseRewind::Rewind::Action::ReadingTime,
-      DiscourseRewind::Rewind::Action::PostingCalendar,
-    ].freeze
+    # Do we need a custom order?
+    available_reports = DiscourseRewind::Rewind::Action::Base.descendants
 
     CACHE_DURATION = 5.minutes
 
@@ -57,7 +54,10 @@ module DiscourseRewind
       reports = Discourse.redis.get(key)
 
       if Rails.env.development? || !reports
-        reports = REPORTS.map { |report| report.call(params:, date:, user:, guardian:) }
+        reports =
+          available_reports
+            .filter { _1.enabled? }
+            .map { |report| report.call(params:, date:, user:, guardian:) }
         Discourse.redis.setex(key, CACHE_DURATION, MultiJson.dump(reports))
       else
         reports = MultiJson.load(reports, symbolize_keys: true)

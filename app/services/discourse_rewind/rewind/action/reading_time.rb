@@ -3,10 +3,7 @@
 # For showcasing the reading time of a user
 # Should we show book covers or just the names?
 module DiscourseRewind
-  class Rewind::Action::ReadingTime < Service::ActionBase
-    option :user
-    option :date
-
+  class Rewind::Action::ReadingTime < Action::Base
     def call
       reading_time = UserVisit.where(user: user).where(visited_at: date).sum(:time_read)
 
