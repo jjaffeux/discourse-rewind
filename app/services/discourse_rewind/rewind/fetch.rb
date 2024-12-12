@@ -63,6 +63,13 @@ module DiscourseRewind
         reports = MultiJson.load(reports, symbolize_keys: true)
       end
 
+      if Rails.env.development?
+        reports.each do |report|
+          puts "\n--- #{report[:identifier]} ---\n"
+          pp report
+        end
+      end
+
       reports
     end
   end
