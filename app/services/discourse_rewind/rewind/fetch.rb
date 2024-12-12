@@ -23,7 +23,10 @@ module DiscourseRewind
     #   @return [Service::Base::Context]
 
     # order matters, rewinds are displayed in the order they are defined
-    REPORTS = [DiscourseRewind::Rewind::Action::CreatePostsCountReport]
+    REPORTS = [
+      DiscourseRewind::Rewind::Action::ReadingTime,
+      DiscourseRewind::Rewind::Action::PostingCalendar,
+    ].freeze
 
     CACHE_DURATION = 5.minutes
 

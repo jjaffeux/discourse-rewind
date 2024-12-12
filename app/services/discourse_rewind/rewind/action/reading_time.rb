@@ -3,24 +3,19 @@
 # For showcasing the reading time of a user
 # Should we show book covers or just the names?
 module DiscourseRewind
-  class Rewind::Action::PostingCalendar < Service::ActionBase
-    option :params
-    option :guardian
-
-    delegate :username, :year, to: :params, private: true
+  class Rewind::Action::ReadingTime < Service::ActionBase
+    option :user
+    option :date
 
     def call
-      user = User.find_by_username(username)
-
-      reading_time =
-        UserVisit.where(user: user).where(visited_at: Date.new(year).all_year).sum(:time_read)
+      reading_time = UserVisit.where(user: user).where(visited_at: date).sum(:time_read)
 
       {
         data: {
           reading_time: reading_time,
           books: best_book_fit(reading_time),
         },
-        identifier: "posting-calendar",
+        identifier: "reading-time",
       }
     end
 
