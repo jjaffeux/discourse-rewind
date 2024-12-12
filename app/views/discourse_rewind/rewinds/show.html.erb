@@ -16,14 +16,7 @@
     <div class="rewind__wrapper">
       <div class="rewind">
         <%- @reports.each do |report| %>
-          <div class="rewind__report">
-            <div class="rewind__report__header">
-              <%= report[:identifier] %>
-            </div>
-            <div class="rewind__report__body">
-              <%= report[:data][:count] %>
-            </div>
-          </div>
+          <%= render report[:identifier] %>
         <%- end %>
       </div>
     </div>
