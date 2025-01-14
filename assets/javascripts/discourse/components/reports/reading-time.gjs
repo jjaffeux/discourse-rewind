@@ -31,14 +31,14 @@ export default class ReadingTime extends Component {
             <div class="book">
               <img
                 alt=""
-                src="/plugins/discourse-rewind/images/books/{{@report.data.isbn}}.jpg"
+                src="/plugins/discourse-rewind/images/books/978-0007477159.jpg"
               />
             </div>
-            {{#if @report.data.series}}
+            {{!-- {{#if @report.data.series}} --}}
               <div class="book-series one"></div>
               <div class="book-series two"></div>
               <div class="book-series three"></div>
-            {{/if}}
+            {{!-- {{/if}} --}}
           </div>
         </div>
       </div>

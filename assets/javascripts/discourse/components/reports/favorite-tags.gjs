@@ -11,10 +11,10 @@ const FavoriteTags = <template>
       <div class="rewind-report-container">
         {{#each @report.data as |data|}}
           <a class="rewind-card" href={{concat "/tag/" data.name}}>
-            <a
+            <p
               class="favorite-tags__tag"
               href={{concat "/tag/" data.name}}
-            >#{{data.name}}</a>
+            >#{{data.name}}</p>
           </a>
         {{/each}}
       </div>

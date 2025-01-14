@@ -4,9 +4,13 @@
     gap: 0.5em;
     flex-wrap: wrap;
   }
-
   .rewind-card {
     @include rewind-border;
+    width: max-content;
+    flex-grow: 1;
+    &:hover {
+      background-color: var(--secondary-very-high);
+    }
   }
 }
 
