@@ -4,7 +4,19 @@
 # Should we show book covers or just the names?
 module DiscourseRewind
   class Rewind::Action::ReadingTime < Rewind::Action::BaseReport
+    FakeData = {
+      data: {
+        reading_time: 2_880_000,
+        book: "The Combined Cosmere works + Wheel of Time",
+        isbn: "978-0812511819",
+        series: true,
+      },
+      identifier: "reading-time",
+    }
+
     def call
+      return FakeData if Rails.env.development?
+
       reading_time = UserVisit.where(user_id: user.id).where(visited_at: date).sum(:time_read)
       book = best_book_fit(reading_time)
 
