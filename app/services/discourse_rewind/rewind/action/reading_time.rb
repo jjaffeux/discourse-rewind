@@ -109,26 +109,32 @@ module DiscourseRewind
         "The Game of Thrones Series" => {
           reading_time: 360_000,
           isbn: "978-0007477159",
+          series: true,
         },
         "Malazan Book of the Fallen" => {
           reading_time: 720_000,
           isbn: "978-0765348821",
+          series: true,
         },
         "Terry Pratchett’s Discworld series" => {
           reading_time: 1_440_000,
           isbn: "978-9123684458",
+          series: true,
         },
         "The Wandering Inn web series" => {
           reading_time: 2_160_000,
           isbn: "the-wandering-inn",
+          series: true,
         },
         "The Combined Cosmere works + Wheel of Time" => {
           reading_time: 2_880_000,
           isbn: "978-0812511819",
+          series: true,
         },
         "The Star Trek novels" => {
           reading_time: 3_600_000,
           isbn: "978-1852860691",
+          series: true,
         },
       }.symbolize_keys
     end

@@ -34,6 +34,11 @@ export default class ReadingTime extends Component {
                 src="/plugins/discourse-rewind/images/books/{{@report.data.isbn}}.jpg"
               />
             </div>
+            {{#if @report.data.series}}
+              <div class="book-series one"></div>
+              <div class="book-series two"></div>
+              <div class="book-series three"></div>
+            {{/if}}
           </div>
         </div>
       </div>

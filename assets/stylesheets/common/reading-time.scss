@@ -15,6 +15,7 @@
   position: relative;
   transform-style: preserve-3d;
   transform: rotateY(-20deg);
+  z-index: 2;
 }
 
 p.reading-time__text {
@@ -76,8 +77,8 @@ p.reading-time__text {
     #fff 80%,
     #f9f9f9 85%,
     #fff 90%,
-    #f9f9f9 95%,
-    #fff 100%
+    #b6b6b6 95%,
+    #b6b6b6 100%
   );
 }
 
@@ -91,6 +92,7 @@ p.reading-time__text {
   transform: translateZ(-17.5px);
   background-color: var(--book-color);
   border-radius: 0 5px 5px 0;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
   @media screen and (width <= 475px) {
     width: 100px;
     height: 133px;
@@ -115,6 +117,87 @@ p.reading-time__text {
   justify-content: space-around;
   align-items: center;
   background-color: var(--secondary);
-  --book-color: rgba(var(--primary-rgb), 0.4);
+  --book-color: var(--primary-very-high);
   @include rewind-border;
+}
+
+.book-series {
+  width: 150px;
+  height: 200px;
+  @media screen and (width <= 475px) {
+    width: 100px;
+    height: 133px;
+  }
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(-20deg);
+  position: absolute;
+  background-color: var(--book-color);
+  border-radius: 0 5px 5px 0;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
+  z-index: 1;
+  &::before {
+    position: absolute;
+    content: " ";
+    background-color: blue;
+    left: 0;
+    top: 4px;
+    width: 33px;
+    height: 192px;
+    @media screen and (width <= 475px) {
+      left: -43px;
+      width: 22px;
+      height: 125px;
+    }
+    transform: translateX(128.5px) rotateY(90deg);
+    background: linear-gradient(
+      90deg,
+      #fff 0%,
+      #f9f9f9 5%,
+      #fff 10%,
+      #f9f9f9 15%,
+      #fff 20%,
+      #f9f9f9 25%,
+      #fff 30%,
+      #f9f9f9 35%,
+      #fff 40%,
+      #f9f9f9 45%,
+      #fff 50%,
+      #f9f9f9 55%,
+      #fff 60%,
+      #f9f9f9 65%,
+      #fff 70%,
+      #f9f9f9 75%,
+      #fff 80%,
+      #f9f9f9 85%,
+      #fff 90%,
+      #b6b6b6 95%,
+      #b6b6b6 100%
+    );
+  }
+  &.one {
+    top: 3px;
+    left: 14px;
+    @media screen and (width <= 475px) {
+      top: 3px;
+      left: 11px;
+    }
+  }
+  &.two {
+    top: 5px;
+    left: 22px;
+    z-index: -1;
+    @media screen and (width <= 475px) {
+      top: 5px;
+      left: 17px;
+    }
+  }
+  &.three {
+    top: 7px;
+    left: 31px;
+    z-index: -2;
+    @media screen and (width <= 475px) {
+      display: none;
+    }
+  }
 }
