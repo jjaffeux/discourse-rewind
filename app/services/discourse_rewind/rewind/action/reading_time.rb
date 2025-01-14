@@ -27,6 +27,7 @@ module DiscourseRewind
           reading_time: reading_time,
           book: book[:title],
           isbn: book[:isbn],
+          series: book[:series],
         },
         identifier: "reading-time",
       }
