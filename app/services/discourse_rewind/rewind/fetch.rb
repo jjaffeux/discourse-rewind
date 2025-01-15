@@ -51,19 +51,19 @@ module DiscourseRewind
     end
 
     def fetch_reports(date:, user:, guardian:, year:)
-      # key = "rewind:#{guardian.user.username}:#{year}"
-      # reports = Discourse.redis.get(key)
+      key = "rewind:#{guardian.user.id}:#{year}"
+      cached_reports = Discourse.redis.get(key)
 
-      # if Rails.env.development? || !reports
-      reports =
-        ::DiscourseRewind::Rewind::Action::BaseReport
-          .descendants
-          .filter { _1.enabled? }
-          .map { |report| report.call(date:, user:, guardian:) }
-      #   Discourse.redis.setex(key, CACHE_DURATION, MultiJson.dump(reports))
-      # else
-      #   reports = MultiJson.load(reports.compact, symbolize_keys: true)
-      # end
+      if !cached_reports
+        reports =
+          ::DiscourseRewind::Rewind::Action::BaseReport
+            .descendants
+            .filter { _1.enabled? }
+            .map { |report| report.call(date:, user:, guardian:) }
+        Discourse.redis.setex(key, CACHE_DURATION, reports.to_json)
+      else
+        reports = JSON.parse(cached_reports, symbolize_names: true)
+      end
 
       reports
     end
