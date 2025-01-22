@@ -47,7 +47,7 @@ export default class WordCard extends Component {
   }
 
   get longWord() {
-    return this.args.word.length >= 7;
+    return this.args.word.length >= 5;
   }
 
   get cardStyle() {

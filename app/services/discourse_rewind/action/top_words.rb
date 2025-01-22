@@ -5,11 +5,11 @@ module DiscourseRewind
     class TopWords < BaseReport
       FakeData = {
         data: [
-          { word: "what", score: 100 },
-          { word: "have", score: 90 },
+          { word: "seven", score: 100 },
+          { word: "longest", score: 90 },
           { word: "you", score: 80 },
           { word: "overachieved", score: 70 },
-          { word: "this", score: 60 },
+          { word: "assume", score: 60 },
           { word: "week", score: 50 },
         ],
         identifier: "top-words",

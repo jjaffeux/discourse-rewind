@@ -88,6 +88,16 @@
     font-weight: normal;
     font-size: var(--font-down-1);
   }
+  .best-posts__post img {
+    max-width: 100%;
+    height: auto;
+  }
+  .best-posts__post code,
+  .best-posts__post pre {
+    font-family: var(--pixel-text);
+    font-weight: normal;
+    font-size: var(--font-down-1);
+  }
   .best-posts__metadata a {
     font-family: var(--pixel-text);
     text-transform: uppercase;
