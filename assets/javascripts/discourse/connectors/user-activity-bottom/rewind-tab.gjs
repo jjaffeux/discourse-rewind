@@ -1,5 +1,5 @@
 import DNavigationItem from "discourse/components/d-navigation-item";
-import icon from "discourse-common/helpers/d-icon";
+import icon from "discourse/helpers/d-icon";
 import { i18n } from "discourse-i18n";
 import isRewindActive from "discourse/plugins/discourse-rewind/discourse/lib/is-rewind-active";
 

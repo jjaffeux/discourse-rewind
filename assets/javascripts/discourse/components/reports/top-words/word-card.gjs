@@ -5,7 +5,7 @@ import didInsert from "@ember/render-modifiers/modifiers/did-insert";
 import { htmlSafe } from "@ember/template";
 import concatClass from "discourse/helpers/concat-class";
 import emoji from "discourse/helpers/emoji";
-import discourseLater from "discourse-common/lib/later";
+import discourseLater from "discourse/lib/later";
 
 const MYSTERY_EMOJIS = [
   "mag", // 🔍

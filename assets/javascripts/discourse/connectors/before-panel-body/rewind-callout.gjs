@@ -2,8 +2,8 @@ import Component from "@glimmer/component";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import DButton from "discourse/components/d-button";
+import icon from "discourse/helpers/d-icon";
 import KeyValueStore from "discourse/lib/key-value-store";
-import icon from "discourse-common/helpers/d-icon";
 import isRewindActive from "discourse/plugins/discourse-rewind/discourse/lib/is-rewind-active";
 
 export default class RewindTab extends Component {
